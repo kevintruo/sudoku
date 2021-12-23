@@ -10,5 +10,9 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
 
         public int[,] Board { get => board; set => board = value; }
+
+        public void displayMainMenu(){
+            Console.Clear();
+        }
     }
 }
