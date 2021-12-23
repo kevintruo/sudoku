@@ -32,14 +32,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             while(numb != 3){
                 //Display menu 
                 s.displayMainMenu();
-                input = Console.ReadLine();
-                //Regex accepts 1 to 3 only
-                Regex rx = new Regex(@"\b[1-3]\b"); 
-                //Check if matches, print out result
-                if(!rx.IsMatch(input!))
-                    Console.WriteLine("Invalid input. Try again!");
-                
-                numb = Int32.Parse(input!);
+                numb = getInput();
                 switch(numb){
                     case 1:
                         s.displaySecondMenu();
@@ -61,6 +54,17 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 // else //False
                 //     Console.WriteLine("Your board is invalid"); //Error msg
             }
+        }
+
+        public static int getInput(){
+            string? input = Console.ReadLine();
+            //Regex accepts 1 to 3 only
+            Regex rx = new Regex(@"\b[1-3]\b"); 
+            //Check if matches, print out result
+            if(!rx.IsMatch(input!))
+                Console.WriteLine("Invalid input. Try again!");
+            
+            return Int32.Parse(input!);
         }
     }
 }
