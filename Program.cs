@@ -40,6 +40,18 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     Console.WriteLine("Invalid input. Try again!");
                 
                 numb = Int32.Parse(input!);
+                switch(numb){
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        Console.WriteLine("Exiting...");
+                        break;
+                    default: //Should never reach here
+                        Console.WriteLine("Default case error");
+                        break;
+                }
 
                 // //Check if board is valid
                 // if(s.isBoardValid(test)) //True
