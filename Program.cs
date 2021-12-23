@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 namespace MyApp // Note: actual namespace depends on the project name.
 {
     public class Program
@@ -23,11 +24,15 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //Sudoku obj
             Sudoku s = new Sudoku(test);
 
-            //Check if board is valid
-            if(s.isBoardValid(test)) //True
-                s.displayBoard(); //Display board
-            else //False
-                Console.WriteLine("Your board is invalid"); //Error msg
+            s.displayMainMenu();
+            string? input = Console.ReadLine();
+            Regex rx = new Regex(@"\b[1-3]\b"); 
+            Console.WriteLine(rx.IsMatch(input!) ? "Valid input" : "Invalid input");
+            // //Check if board is valid
+            // if(s.isBoardValid(test)) //True
+            //     s.displayBoard(); //Display board
+            // else //False
+            //     Console.WriteLine("Your board is invalid"); //Error msg
         }
     }
 }
