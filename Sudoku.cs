@@ -16,7 +16,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method to display the main menu
         public void displayMainMenu(){
             //Commented out for testing Console.Clear();
-            Console.Write("\nWelcome to the Soduku project!\n1. Play game\n2. Play for me\n3. Exit\n> ");
+            Console.Write("\nWelcome to the Soduku project!\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
         }
 
         //Method that display the board
