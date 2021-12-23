@@ -31,22 +31,34 @@ namespace MyApp // Note: actual namespace depends on the project name.
             while(numb1 != 3){
                 //Display menu 
                 s.displayMainMenu();
+                //Get input from 1 to 3
                 numb1 = getInput();
+                //Switch statement
                 switch(numb1){
-                    case 1:
+                    case 1: //Play game
                         while(numb2 != 3){
+                            //Display second menu 
                             s.displaySecondMenu();
+                            //Get input from 1 to 3
                             numb2 = getInput();
+                            //Switch statement
                             switch(numb2){
-                                case 1:
-                                    s.displayBoard(); 
+                                case 1: //Load the board from 'board.txt'
+                                    //Check if board is valid
+                                    if(!s.isBoardValid(test)){
+                                        Console.WriteLine("Your board is invalid"); 
+                                        Thread.Sleep(300);
+                                        break;
+                                    }
+
+                                    s.displayBoard(); //Display board
                                     Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
                                     Console.ReadLine();
                                     break;
-                                case 2:
+                                case 2: //Generate a random board
                                     s.displayBoard(); 
                                     break;
-                                case 3:
+                                case 3: //Back to main menu
                                     Console.WriteLine("Going to main menu ...");
                                     Thread.Sleep(300);
                                     break;
@@ -58,10 +70,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         }
                         numb2 = -1;
                         break;
-                    case 2:
+                    case 2: //Computer plays game
                         s.displaySecondMenu();
                         break;
-                    case 3:
+                    case 3: //Exit
                         Console.WriteLine("Exiting...");
                         break;
                     default: 

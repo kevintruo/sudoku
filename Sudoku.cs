@@ -60,7 +60,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method to display second menu
         public void displaySecondMenu(){
             Console.WriteLine("Loading...");
-            Thread.Sleep(300);
+            Thread.Sleep(500);
             Console.Clear();
             Console.Write("1. Load the board from 'board.txt'\n2. Generate a random board\n3. Back to main menu\n> ");
         }
