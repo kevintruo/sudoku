@@ -25,7 +25,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Sudoku s = new Sudoku(test);
 
             //Declare variables
-            string? input;
             int numb = -1;
             
             //While loop through
@@ -43,8 +42,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     case 3:
                         Console.WriteLine("Exiting...");
                         break;
-                    default: //Should never reach here
-                        Console.WriteLine("Default case error");
+                    default: 
+                        Console.WriteLine("Invalid input. Try again");
                         break;
                 }
 
@@ -56,13 +55,14 @@ namespace MyApp // Note: actual namespace depends on the project name.
             }
         }
 
+        //Method to get user input from 1 to 3 only
         public static int getInput(){
             string? input = Console.ReadLine();
             //Regex accepts 1 to 3 only
             Regex rx = new Regex(@"\b[1-3]\b"); 
             //Check if matches, print out result
             if(!rx.IsMatch(input!))
-                Console.WriteLine("Invalid input. Try again!");
+                return -1;
             
             return Int32.Parse(input!);
         }
