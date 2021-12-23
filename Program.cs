@@ -36,10 +36,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 //Regex accepts 1 to 3 only
                 Regex rx = new Regex(@"\b[1-3]\b"); 
                 //Check if matches, print out result
-                if(rx.IsMatch(input!))
-                    numb = Int32.Parse(input!);
-                else
+                if(!rx.IsMatch(input!))
                     Console.WriteLine("Invalid input. Try again!");
+                
+                numb = Int32.Parse(input!);
+
                 // //Check if board is valid
                 // if(s.isBoardValid(test)) //True
                 //     s.displayBoard(); //Display board
