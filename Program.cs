@@ -7,6 +7,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         public static void Main(string[] args)
         {
+            //Test board
             int[,] test = new int[,] {
                 {0,7,0,0,2,9,1,0,0}, 
                 {0,0,5,0,0,0,9,6,0}, 
@@ -18,11 +19,15 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 {7,0,2,9,0,0,5,0,1},
                 {4,0,9,0,0,3,0,0,0}
             };
+
+            //Sudoku obj
             Sudoku s = new Sudoku(test);
-            if(s.isBoardValid(test))
-                s.displayBoard();
-            else
-                Console.WriteLine("Your board is invalid");
+
+            //Check if board is valid
+            if(s.isBoardValid(test)) //True
+                s.displayBoard(); //Display board
+            else //False
+                Console.WriteLine("Your board is invalid"); //Error msg
         }
     }
 }

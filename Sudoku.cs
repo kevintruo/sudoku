@@ -4,11 +4,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         private int[,] board;
 
+        //Constructor 
         public Sudoku(int[,] board)
         {
             this.board = board;
         }
 
+        //Get, set
         public int[,] Board { get => board; set => board = value; }
 
         //Method to display the main menu
