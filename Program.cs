@@ -19,7 +19,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 {4,0,9,0,0,3,0,0,0}
             };
             Sudoku s = new Sudoku(test);
-            s.displayMainMenu();
+            s.displayBoard();
         }
     }
 }
