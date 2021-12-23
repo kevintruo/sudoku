@@ -42,8 +42,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 numb = Int32.Parse(input!);
                 switch(numb){
                     case 1:
+                        s.displaySecondMenu();
                         break;
                     case 2:
+                        s.displaySecondMenu();
                         break;
                     case 3:
                         Console.WriteLine("Exiting...");
