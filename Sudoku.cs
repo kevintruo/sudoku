@@ -46,5 +46,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //Add letter from A to J at the end of every column
             Console.WriteLine("    A B C   D E F   G H J ");
         }
+
+        //Method to check if the board number is from 1 to 9 only
+        public bool isBoardValid(int[,] board){
+            foreach(int i in board)
+                if(i < 0 || i > 9)
+                    return false;
+            return true;
+        }
     }
 }
