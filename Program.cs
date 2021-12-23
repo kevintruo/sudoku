@@ -33,7 +33,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 //Display menu 
                 s.displayMainMenu();
                 //Get input from 1 to 3
-                numb1 = getInput();
+                numb1 = getInput(@"\b[1-3]$");
                 //Switch statement
                 switch(numb1){
                     case 1: //Play game
@@ -41,7 +41,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             //Display second menu 
                             s.displaySecondMenu();
                             //Get input from 1 to 3
-                            numb2 = getInput();
+                            numb2 = getInput(@"\b[1-3]$");
                             //Switch statement
                             switch(numb2){
                                 case 1: //Load the board from 'board.txt'
@@ -105,10 +105,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
 
         //Method to get user input from 1 to 3 only
-        public static int getInput(){
+        public static int getInput(string pattern){
             string? input = Console.ReadLine();
             //Regex accepts 1 to 3 only
-            Regex rx = new Regex(@"\b[1-3]$"); 
+            Regex rx = new Regex(pattern); 
             //Check if matches, print out result
             if(!rx.IsMatch(input!))
                 return -1;
