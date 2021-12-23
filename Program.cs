@@ -24,9 +24,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //Sudoku obj
             Sudoku s = new Sudoku(test);
 
+            //Display menu 
             s.displayMainMenu();
+            //Get user input
             string? input = Console.ReadLine();
+            //Regex accepts 1 to 3 only
             Regex rx = new Regex(@"\b[1-3]\b"); 
+            //Check if matches, print out result
             Console.WriteLine(rx.IsMatch(input!) ? "Valid input" : "Invalid input");
             // //Check if board is valid
             // if(s.isBoardValid(test)) //True
