@@ -25,7 +25,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Sudoku s = new Sudoku(test);
 
             //Declare variables
-            int numb1 = -1, numb2 = -1;
+            int numb1 = -1, numb2 = -1, numb = -1;
             string? coord = "";
 
             //While loop through
@@ -33,7 +33,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 //Display menu 
                 s.displayMainMenu();
                 //Get input from 1 to 3
-                numb1 = getInput(@"\b[1-3]$");
+                numb1 = getInput(@"^[1-3]$");
                 //Switch statement
                 switch(numb1){
                     case 1: //Play game
@@ -41,7 +41,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             //Display second menu 
                             s.displaySecondMenu();
                             //Get input from 1 to 3
-                            numb2 = getInput(@"\b[1-3]$");
+                            numb2 = getInput(@"^[1-3]$");
                             //Switch statement
                             switch(numb2){
                                 case 1: //Load the board from 'board.txt'
@@ -62,8 +62,14 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                         if(!isInputValid(coord!))
                                             Console.WriteLine("Invalid input");
                                         else {
+                                            numb = -1;
                                             Console.Write("Enter your number here\n> ");
-                                            Console.ReadLine();
+                                            while(numb < 0 || numb > 9){ 
+                                                numb = getInput(@"^[1-9]$");
+                                                if(numb == -1)
+                                                    Console.Write("Invalid input. Try again:\n> ");
+                                            }
+                                           
                                         }
                                         
                                     }
