@@ -26,7 +26,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
             //Declare variables
             int numb1 = -1, numb2 = -1;
-            
+            string? coord = "";
+
             //While loop through
             while(numb1 != 3){
                 //Display menu 
@@ -52,8 +53,20 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     }
 
                                     s.displayBoard(); //Display board
-                                    Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
-                                    Console.ReadLine();
+                                    //Reset input
+                                    coord = "";
+                                    //Loop until input is valid a1, b1, c2, etc...
+                                    while(!isInputValid(coord!)){
+                                        Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");   
+                                        coord = Console.ReadLine();
+                                        if(!isInputValid(coord!))
+                                            Console.WriteLine("Invalid input");
+                                        else {
+                                            Console.Write("Enter your number here\n> ");
+                                            Console.ReadLine();
+                                        }
+                                        
+                                    }
                                     break;
                                 case 2: //Generate a random board
                                     s.displayBoard(); 
@@ -68,6 +81,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     break;
                             }
                         }
+                        //Reset numb2
                         numb2 = -1;
                         break;
                     case 2: //Computer plays game
@@ -100,6 +114,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 return -1;
             
             return Int32.Parse(input!);
+        }
+
+        public static bool isInputValid(string input){
+            //Regex accepts a to j or A to J and 1 to 9
+            Regex rx = new Regex(@"^[a-jA-J][1-9]$");
+            //Check if matches, return result
+            return rx.IsMatch(input) ? true : false;
         }
     }
 }
