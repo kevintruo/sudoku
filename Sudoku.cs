@@ -13,12 +13,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Get, set
         public int[,] Board { get => board; set => board = value; }
 
-        //Method to display the main menu
-        public void displayMainMenu(){
-            Console.Clear();
-            Console.Write("Welcome to the Soduku project!\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
-        }
-
         //Method that display the board
         public void displayBoard(){
             //Traverse the board
@@ -57,8 +51,16 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return true;
         }
 
+        //Method to display the main menu
+        public void displayMainMenu(){
+            Console.Clear();
+            Console.Write("Welcome to the Soduku project!\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
+        }
+
         //Method to display second menu
         public void displaySecondMenu(){
+            Console.WriteLine("Loading...");
+            Thread.Sleep(300);
             Console.Clear();
             Console.Write("1. Load the board from 'board.txt'\n2. Generate a random board\n3. Back to main menu\n> ");
         }
