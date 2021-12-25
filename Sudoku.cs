@@ -65,9 +65,14 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.Write("1. Load the board from 'board.txt'\n2. Generate a random board\n3. Back to main menu\n> ");
         }
 
-        //Method to split A1, B9, etc   
+        //Method to get column coordinate
         public int getCol(string input){
             return char.ToUpper(input.ToCharArray()[0]) - 64;
+        }
+
+        //Method to get row coordinate
+        public int getRow(string input){
+            return input.ToCharArray()[1] - '0';
         }
     }
 }
