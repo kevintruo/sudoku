@@ -65,6 +65,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                             numb = -1;
                                             Console.WriteLine("Column coord is " + s.getCol(coord!));
                                             Console.WriteLine("Row coord is " + s.getRow(coord!));
+                                            Console.WriteLine("Boolean value is " + s.isEmpty(s.getCol(coord!), s.getRow(coord!)));
                                             Console.Write("Enter your number here\n> ");
                                             while(numb < 0 || numb > 9){ 
                                                 numb = getInput(@"^[1-9]$");

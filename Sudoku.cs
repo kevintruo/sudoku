@@ -74,5 +74,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
         public int getRow(string input){
             return input.ToCharArray()[1] - '0';
         }
+
+        public bool isEmpty(int col, int row){
+            if(board[row, col] == 0) 
+                return true;
+            return false;
+        }
     }
 }
