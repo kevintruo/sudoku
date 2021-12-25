@@ -67,8 +67,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         //Method to split A1, B9, etc   
         public int getCol(string input){
-            char[] letters = input.ToCharArray();
-            return char.ToUpper(letters[0]) - 64;
+            return char.ToUpper(input.ToCharArray()[0]) - 64;
         }
     }
 }
