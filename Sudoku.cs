@@ -64,5 +64,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.Clear();
             Console.Write("1. Load the board from 'board.txt'\n2. Generate a random board\n3. Back to main menu\n> ");
         }
+
+        //Method to split A1, B9, etc   
+        public int getCol(string input){
+            char[] letters = input.ToCharArray();
+            return char.ToUpper(letters[0]) - 64;
+        }
     }
 }
