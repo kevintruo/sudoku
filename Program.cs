@@ -56,23 +56,25 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     //Reset input
                                     coord = "";
                                     //Loop until input is valid a1, b1, c2, etc...
-                                    while(!isInputValid(coord!)){
+                                    while(!isInputValid(coord!) || !s.isEmpty(s.getRow(coord!), s.getCol(coord!))){
                                         Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");   
                                         coord = Console.ReadLine();
                                         if(!isInputValid(coord!))
                                             Console.WriteLine("Invalid input");
                                         else {
                                             numb = -1;
-                                            Console.WriteLine("Column coord is " + s.getCol(coord!));
-                                            Console.WriteLine("Row coord is " + s.getRow(coord!));
                                             Console.WriteLine("Cell value is " + s.getInt(s.getRow(coord!),s.getCol(coord!)));
-                                            Console.Write("Enter your number here\n> ");
-                                            while(numb < 0 || numb > 9){ 
-                                                numb = getInput(@"^[1-9]$");
-                                                if(numb == -1)
-                                                    Console.Write("Invalid input. Try again:\n> ");
+                                            if(!s.isEmpty(s.getRow(coord!), s.getCol(coord!))){
+                                                Console.WriteLine("This cell is not empty. Try again!");
+                                            } 
+                                            else {
+                                                Console.Write("Enter your number here\n> ");
+                                                while(numb < 0 || numb > 9){ 
+                                                    numb = getInput(@"^[1-9]$");
+                                                    if(numb == -1)
+                                                        Console.Write("Invalid input. Try again:\n> ");
+                                                }
                                             }
-                                           
                                         }
                                         
                                     }

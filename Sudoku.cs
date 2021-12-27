@@ -67,12 +67,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         //Method to get column coordinate
         public int getCol(string input){
-            return char.ToUpper(input.ToCharArray()[0]) - 'A';
+            return input != "" ? char.ToUpper(input.ToCharArray()[0]) - 'A' : 0;
         }
 
         //Method to get row coordinate
         public int getRow(string input){
-            return input.ToCharArray()[1] - '1';
+            return input != "" ? input.ToCharArray()[1] - '1' : 0;
         }
 
         public bool isEmpty(int row, int col){
