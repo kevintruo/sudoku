@@ -84,5 +84,9 @@ namespace MyApp // Note: actual namespace depends on the project name.
         public int getInt(int row, int col){
             return board[row, col];
         }
+
+        public void setInt(int row, int col, int input){
+            board[row, col] = input;
+        }
     }
 }

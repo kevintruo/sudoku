@@ -74,6 +74,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                                     if(numb == -1)
                                                         Console.Write("Invalid input. Try again:\n> ");
                                                 }
+                                                s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
+                                                s.displayBoard();
                                             }
                                         }
                                         
