@@ -10,13 +10,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
         {
             //Test board
             int[,] test = new int[,] {
-                {0,7,0,0,2,9,1,0,0}, 
-                {0,0,5,0,0,0,9,6,0}, 
-                {2,0,0,5,0,1,0,0,0}, 
+                {0,7,0,0,2,9,1,0,0},
+                {0,0,5,0,0,0,9,6,0},
+                {2,0,0,5,0,1,0,0,0},
                 {8,2,0,1,0,0,7,0,3},
-                {9,3,6,0,0,0,2,0,8}, 
-                {0,0,7,8,3,0,0,9,6}, 
-                {3,0,1,0,0,7,6,0,9}, 
+                {9,3,6,0,0,0,2,0,8},
+                {0,0,7,8,3,0,0,9,6},
+                {3,0,1,0,0,7,6,0,9},
                 {7,0,2,9,0,0,5,0,1},
                 {4,0,9,0,0,3,0,0,0}
             };
@@ -29,25 +29,30 @@ namespace MyApp // Note: actual namespace depends on the project name.
             string? coord = "";
 
             //While loop through
-            while(numb1 != 3){
+            while (numb1 != 3)
+            {
                 //Display menu 
                 s.displayMainMenu();
                 //Get input from 1 to 3
                 numb1 = getInput(@"^[1-3]$");
                 //Switch statement
-                switch(numb1){
+                switch (numb1)
+                {
                     case 1: //Play game
-                        while(numb2 != 3){
+                        while (numb2 != 3)
+                        {
                             //Display second menu 
                             s.displaySecondMenu();
                             //Get input from 1 to 3
                             numb2 = getInput(@"^[1-3]$");
                             //Switch statement
-                            switch(numb2){
+                            switch (numb2)
+                            {
                                 case 1: //Load the board from 'board.txt'
                                     //Check if board is valid
-                                    if(!s.isBoardValid(test)){
-                                        Console.WriteLine("Your board is invalid"); 
+                                    if (!s.isBoardValid(test))
+                                    {
+                                        Console.WriteLine("Your board is invalid");
                                         Thread.Sleep(300);
                                         break;
                                     }
@@ -56,33 +61,38 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     //Reset input
                                     coord = "";
                                     //Loop until input is valid a1, b1, c2, etc...
-                                    while(!isInputValid(coord!) || !s.isEmpty(s.getRow(coord!), s.getCol(coord!))){
-                                        Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");   
+                                    while (!isInputValid(coord!) || !s.isBoardFull())
+                                    {
+                                        Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
                                         coord = Console.ReadLine();
-                                        if(!isInputValid(coord!))
+                                        if (!isInputValid(coord!))
                                             Console.WriteLine("Invalid input");
-                                        else {
+                                        else
+                                        {
                                             numb = -1;
-                                            Console.WriteLine("Cell value is " + s.getInt(s.getRow(coord!),s.getCol(coord!)));
-                                            if(!s.isEmpty(s.getRow(coord!), s.getCol(coord!))){
+                                            Console.WriteLine("Cell value is " + s.getInt(s.getRow(coord!), s.getCol(coord!)));
+                                            if (!s.isEmpty(s.getRow(coord!), s.getCol(coord!)))
+                                            {
                                                 Console.WriteLine("This cell is not empty. Try again!");
-                                            } 
-                                            else {
+                                            }
+                                            else
+                                            {
                                                 Console.Write("Enter your number here\n> ");
-                                                while(numb < 0 || numb > 9){ 
+                                                while (numb < 0 || numb > 9)
+                                                {
                                                     numb = getInput(@"^[1-9]$");
-                                                    if(numb == -1)
+                                                    if (numb == -1)
                                                         Console.Write("Invalid input. Try again:\n> ");
                                                 }
                                                 s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
                                                 s.displayBoard();
                                             }
                                         }
-                                        
+
                                     }
                                     break;
                                 case 2: //Generate a random board
-                                    s.displayBoard(); 
+                                    s.displayBoard();
                                     break;
                                 case 3: //Back to main menu
                                     Console.WriteLine("Going to main menu ...");
@@ -103,7 +113,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     case 3: //Exit
                         Console.WriteLine("Exiting...");
                         break;
-                    default: 
+                    default:
                         Console.WriteLine("Invalid input. Try again");
                         Thread.Sleep(500);
                         break;
@@ -118,18 +128,20 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
 
         //Method to get user input from 1 to 3 only
-        public static int getInput(string pattern){
+        public static int getInput(string pattern)
+        {
             string? input = Console.ReadLine();
             //Regex accepts 1 to 3 only
-            Regex rx = new Regex(pattern); 
+            Regex rx = new Regex(pattern);
             //Check if matches, print out result
-            if(!rx.IsMatch(input!))
+            if (!rx.IsMatch(input!))
                 return -1;
-            
+
             return Int32.Parse(input!);
         }
 
-        public static bool isInputValid(string input){
+        public static bool isInputValid(string input)
+        {
             //Regex accepts a to j or A to J and 1 to 9
             Regex rx = new Regex(@"^[a-iA-I][1-9]$");
             //Check if matches, return result

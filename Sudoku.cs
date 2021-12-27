@@ -2,37 +2,46 @@ namespace MyApp // Note: actual namespace depends on the project name.
 {
     public class Sudoku
     {
-        private int[,] board;
-
+        private int[,] playBoard;
+        private int[,] setBoard;
         //Constructor 
         public Sudoku(int[,] board)
         {
-            this.board = board;
+            this.playBoard = board;
+            this.setBoard = (int[,])this.playBoard.Clone();
         }
 
         //Get, set
-        public int[,] Board { get => board; set => board = value; }
+        public int[,] Board { get => playBoard; set => playBoard = value; }
 
         //Method that display the board
-        public void displayBoard(){
+        public void displayBoard()
+        {
+            Console.Clear();
             //Traverse the board
-            for(int i = 0; i < board.GetLength(0); i++){
+            for (int i = 0; i < playBoard.GetLength(0); i++)
+            {
                 //Draw a horizontal line every third time 
-                if(i % 3 == 0) Console.WriteLine("  -------------------------");
+                if (i % 3 == 0) Console.WriteLine("  -------------------------");
 
-                for(int j = 0; j < board.GetLength(1); j++){
+                for (int j = 0; j < playBoard.GetLength(1); j++)
+                {
                     //Add number from 1 to 9 at the start of every row
-                    if(j == 0) Console.Write(i + 1 + " ");
+                    if (j == 0) Console.Write(i + 1 + " ");
                     //Draw a vertical line every third time
-                    if(j % 3 == 0) Console.Write("| ");
+                    if (j % 3 == 0) Console.Write("| ");
                     //Insert "_" instead of 0, and change the colour to dark yellow for better visibility
-                    if(board[i,j] == 0) {
+                    if (isEmpty(i, j))
+                    {
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write("_ ", Console.ForegroundColor);
+                        if (playBoard[i, j] == 0)
+                            Console.Write("_ ", Console.ForegroundColor);
+                        else
+                            Console.Write(playBoard[i, j] + " ", Console.ForegroundColor);
                         Console.ResetColor();
                     }
                     //Write provided numebers
-                    else Console.Write(board[i,j] + " ");
+                    else Console.Write(playBoard[i, j] + " ");
                 }
                 //End every row with |
                 Console.Write("|\n");
@@ -44,21 +53,24 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
 
         //Method to check if the board number is from 1 to 9 only
-        public bool isBoardValid(int[,] board){
-            foreach(int i in board)
-                if(i < 0 || i > 9)
+        public bool isBoardValid(int[,] board)
+        {
+            foreach (int i in board)
+                if (i < 0 || i > 9)
                     return false;
             return true;
         }
 
         //Method to display the main menu
-        public void displayMainMenu(){
+        public void displayMainMenu()
+        {
             Console.Clear();
             Console.Write("Welcome to the Soduku project!\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
         }
 
         //Method to display second menu
-        public void displaySecondMenu(){
+        public void displaySecondMenu()
+        {
             Console.WriteLine("Loading...");
             Thread.Sleep(500);
             Console.Clear();
@@ -66,27 +78,45 @@ namespace MyApp // Note: actual namespace depends on the project name.
         }
 
         //Method to get column coordinate
-        public int getCol(string input){
+        public int getCol(string input)
+        {
             return input != "" ? char.ToUpper(input.ToCharArray()[0]) - 'A' : 0;
         }
 
         //Method to get row coordinate
-        public int getRow(string input){
+        public int getRow(string input)
+        {
             return input != "" ? input.ToCharArray()[1] - '1' : 0;
         }
 
-        public bool isEmpty(int row, int col){
-            if(getInt(row, col) == 0) 
+        //Check if setBoard is empty
+        public bool isEmpty(int row, int col)
+        {
+            if (setBoard[row, col] == 0)
                 return true;
             return false;
         }
 
-        public int getInt(int row, int col){
-            return board[row, col];
+        //Return numb from playBoard
+        public int getInt(int row, int col)
+        {
+            return playBoard[row, col];
         }
 
-        public void setInt(int row, int col, int input){
-            board[row, col] = input;
+        //Set numb to playBoard
+        public void setInt(int row, int col, int input)
+        {
+            playBoard[row, col] = input;
+        }
+
+        //Added this method to keep going for now. Will add isGameOver later
+        public bool isBoardFull()
+        {
+            for (int i = 0; i < playBoard.GetLength(0); i++)
+                for (int j = 0; j < playBoard.GetLength(1); j++)
+                    if (playBoard[i, j] == 0) return false;
+
+            return true;
         }
     }
 }
