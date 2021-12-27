@@ -75,13 +75,13 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return input.ToCharArray()[1] - '1';
         }
 
-        public bool isEmpty(int col, int row){
-            if(board[row, col] == 0) 
+        public bool isEmpty(int row, int col){
+            if(getInt(row, col) == 0) 
                 return true;
             return false;
         }
 
-        public int getInt(int col, int row){
+        public int getInt(int row, int col){
             return board[row, col];
         }
     }
