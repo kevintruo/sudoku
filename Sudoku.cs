@@ -2,8 +2,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
 {
     public class Sudoku
     {
+        //CRUD board
         private int[,] playBoard;
+
+        //Reference board, no CRUD
         private int[,] setBoard;
+
         //Constructor 
         public Sudoku(int[,] board)
         {
@@ -17,6 +21,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method that display the board
         public void displayBoard()
         {
+            //Clear console
             Console.Clear();
             //Traverse the board
             for (int i = 0; i < playBoard.GetLength(0); i++)
@@ -30,10 +35,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     if (j == 0) Console.Write(i + 1 + " ");
                     //Draw a vertical line every third time
                     if (j % 3 == 0) Console.Write("| ");
-                    //Insert "_" instead of 0, and change the colour to dark yellow for better visibility
-                    if (isEmpty(i, j))
+                    //Insert "_" or the inserted number instead of 0, and change the colour to dark yellow for better visibility
+                    if (isEmpty(i, j)) //Check if the cell from setBoard is empty
                     {
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        //Write _ or inserted number in yellow
                         if (playBoard[i, j] == 0)
                             Console.Write("_ ", Console.ForegroundColor);
                         else

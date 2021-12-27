@@ -53,7 +53,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     if (!s.isBoardValid(test))
                                     {
                                         Console.WriteLine("Your board is invalid");
-                                        Thread.Sleep(300);
+                                        Thread.Sleep(500);
                                         break;
                                     }
 
@@ -63,28 +63,38 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     //Loop until input is valid a1, b1, c2, etc...
                                     while (!isInputValid(coord!) || !s.isBoardFull())
                                     {
+                                        //Prompt input cell
                                         Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
                                         coord = Console.ReadLine();
+                                        //Validate input cell
                                         if (!isInputValid(coord!))
+                                        {
                                             Console.WriteLine("Invalid input");
+                                            Thread.Sleep(500);
+                                            s.displayBoard(); //Display board
+                                        }
                                         else
                                         {
+                                            //Reset input
                                             numb = -1;
                                             Console.WriteLine("Cell value is " + s.getInt(s.getRow(coord!), s.getCol(coord!)));
+                                            //Check if cell input is empty (from setBoard)
                                             if (!s.isEmpty(s.getRow(coord!), s.getCol(coord!)))
-                                            {
                                                 Console.WriteLine("This cell is not empty. Try again!");
-                                            }
                                             else
                                             {
+                                                //Prompt for a number to insert into the playBoard
                                                 Console.Write("Enter your number here\n> ");
+                                                //Validate number
                                                 while (numb < 0 || numb > 9)
                                                 {
                                                     numb = getInput(@"^[1-9]$");
                                                     if (numb == -1)
                                                         Console.Write("Invalid input. Try again:\n> ");
                                                 }
+                                                //Insert number
                                                 s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
+                                                //Display board after inserted
                                                 s.displayBoard();
                                             }
                                         }
@@ -98,7 +108,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     Console.WriteLine("Going to main menu ...");
                                     Thread.Sleep(300);
                                     break;
-                                default:
+                                default: //Invalid input
                                     Console.WriteLine("Invalid input. Try again");
                                     Thread.Sleep(500);
                                     break;
@@ -118,12 +128,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         Thread.Sleep(500);
                         break;
                 }
-
-                // //Check if board is valid
-                // if(s.isBoardValid(test)) //True
-                //     s.displayBoard(); //Display board
-                // else //False
-                //     Console.WriteLine("Your board is invalid"); //Error msg
             }
         }
 
@@ -140,6 +144,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return Int32.Parse(input!);
         }
 
+        //Method to check cell input is valid (a1, b2, c9, i9, etc)
         public static bool isInputValid(string input)
         {
             //Regex accepts a to j or A to J and 1 to 9
