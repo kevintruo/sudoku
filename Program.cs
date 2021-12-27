@@ -65,7 +65,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                             numb = -1;
                                             Console.WriteLine("Column coord is " + s.getCol(coord!));
                                             Console.WriteLine("Row coord is " + s.getRow(coord!));
-                                            Console.WriteLine("Boolean value is " + s.isEmpty(s.getCol(coord!), s.getRow(coord!)));
+                                            Console.WriteLine("Cell value is " + s.getInt(s.getCol(coord!), s.getRow(coord!)));
                                             Console.Write("Enter your number here\n> ");
                                             while(numb < 0 || numb > 9){ 
                                                 numb = getInput(@"^[1-9]$");
@@ -127,7 +127,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         public static bool isInputValid(string input){
             //Regex accepts a to j or A to J and 1 to 9
-            Regex rx = new Regex(@"^[a-jA-J][1-9]$");
+            Regex rx = new Regex(@"^[a-iA-I][1-9]$");
             //Check if matches, return result
             return rx.IsMatch(input) ? true : false;
         }

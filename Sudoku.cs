@@ -40,7 +40,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //Bottom border
             Console.WriteLine("  -------------------------");
             //Add letter from A to J at the end of every column
-            Console.WriteLine("    A B C   D E F   G H J ");
+            Console.WriteLine("    A B C   D E F   G H I ");
         }
 
         //Method to check if the board number is from 1 to 9 only
@@ -67,18 +67,22 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         //Method to get column coordinate
         public int getCol(string input){
-            return char.ToUpper(input.ToCharArray()[0]) - 64;
+            return char.ToUpper(input.ToCharArray()[0]) - 'A';
         }
 
         //Method to get row coordinate
         public int getRow(string input){
-            return input.ToCharArray()[1] - '0';
+            return input.ToCharArray()[1] - '1';
         }
 
         public bool isEmpty(int col, int row){
             if(board[row, col] == 0) 
                 return true;
             return false;
+        }
+
+        public int getInt(int col, int row){
+            return board[row, col];
         }
     }
 }
