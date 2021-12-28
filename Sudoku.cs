@@ -115,54 +115,103 @@ namespace MyApp // Note: actual namespace depends on the project name.
             playBoard[row, col] = input;
         }
 
+        //Check if sudoku board is valid
         public bool isValidSudoku()
         {
-            HashSet<int> r = new HashSet<int>();
-            HashSet<int> c = new HashSet<int>();
-            HashSet<int> sb = new HashSet<int>();
+            //Created hashset
+            HashSet<int> row = new HashSet<int>();
+            HashSet<int> col = new HashSet<int>();
+            HashSet<int> subSquare = new HashSet<int>();
 
-            int sbRow = -1, sbColumn = 0;
+            int sqRow = -1, sqCol = 0;
 
             for (int i = 0; i < playBoard.GetLength(0); i++)
             {
-                r.Clear();
-                c.Clear();
-                sb.Clear();
+                row.Clear();
+                col.Clear();
+                subSquare.Clear();
 
                 for (int j = 0; j < playBoard.GetLength(1); j++)
                 {
-                    // Checks if no repetition exists in first row for  i = 0
-                    if (playBoard[i, j] != '.' && !r.Add(playBoard[i, j]))
+                    // Checks if no repetition exists for row 
+                    if (playBoard[i, j] != 0 && !row.Add(playBoard[i, j]))
                         return false;
 
-                    // Checks if no repetition exists in first column for  i = 0
-                    if (playBoard[j, i] != '.' && !c.Add(playBoard[j, i]))
+                    // Checks if no repetition exists for column
+                    if (playBoard[j, i] != 0 && !col.Add(playBoard[j, i]))
                         return false;
 
-                    sbRow = i;
-                    sbColumn = (3 * i) % 9 + j % 3;
+                    //Determine x,y for the subSquare traversal
+                    sqRow = i;
+                    sqCol = (3 * i) % 9 + j % 3;
 
-                    if (sbRow < 3)
-                        sbRow = 0;
-                    else if (sbRow < 6)
-                        sbRow = 3;
+                    if (sqRow < 3)
+                        sqRow = 0;
+                    else if (sqRow < 6)
+                        sqRow = 3;
                     else
-                        sbRow = 6;
+                        sqRow = 6;
 
-                    sbRow += j / 3;
+                    sqRow += j / 3;
 
-                    // Checks if no repetition exists in first subbox for  i = 0
-                    if (playBoard[sbRow, sbColumn] != '.' && !sb.Add(playBoard[sbRow, sbColumn]))
+                    //Checks if no repetition exists for subSquare
+                    if (playBoard[sqRow, sqCol] != '.' && !subSquare.Add(playBoard[sqRow, sqCol]))
                         return false;
                 }
             }
-
             return true;
         }
         
-        //Method to reset play board
-        public void resetPlayBoard(){
-            this.playBoard = new int[,]{};
+        //Method to check if row, column and subSquare contains num
+        public bool containNum (int row, int col, int num){
+            //Check if row contains num
+            for(int i = 0; i < playBoard.GetLength(0); i++)
+                if(playBoard[row, i] == num)
+                    return false;
+
+            //Check if column contains num
+            for (int j = 0; j < playBoard.GetLength(0); j++)
+                if(playBoard[j, col] == num)
+                    return false;
+
+            //Check if subSquare contains numb
+            //Determine starting row and column numbers
+            int sqRow = row - row % 3;
+            int sqCol = col - col % 3;
+            for(int x = sqRow; x < sqRow + 3; x++)
+                for(int y = sqCol; y < sqCol + 3; y++)
+                    if(playBoard[sqRow, sqCol] == num)
+                        return false;
+            
+            return true;
+        }
+
+        public bool solve(){
+            int row = -1, col = -1;
+            bool isEmpty = true;
+            for(int i = 0; i < playBoard.GetLength(0); i++){
+                for(int j = 0; j < playBoard.GetLength(1); j++){
+                    if(playBoard[i, j] == 0) {
+                        row = i;
+                        col = j;
+                        isEmpty = false;
+                        break;
+                    }
+                }
+                if(!isEmpty) break;
+            }
+            if(isEmpty) return true;
+
+            for(int num = 1; num <= playBoard.GetLength(0); num++) {
+                if(containNum(row, col, num)){
+                    playBoard[row, col] = num;
+                    if(solve()) 
+                        return true;
+                    else
+                        playBoard[row, col] = 0;
+                }
+            }
+            return false;
         }
     }
 }

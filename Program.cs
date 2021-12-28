@@ -80,7 +80,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     while (!isInputValid(coord!) || !s.isValidSudoku())
                                     {
                                         //Prompt input cell
-                                        Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
+                                        Console.Write("\n Enter coordinates (sample input: 'a1', 'I9')\n> ");
                                         coord = Console.ReadLine();
                                         //Validate input cell
                                         if (!isInputValid(coord!))
@@ -140,6 +140,15 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         break;
                     case 2: //Computer plays game
                         s.displaySecondMenu();
+                        s = new Sudoku(test);
+                        s.displayBoard();
+                        if(!s.solve())
+                            Console.WriteLine("There is no solution");
+                        else {
+                            s.displayBoard();
+                            Console.WriteLine("It is all solved!");
+                        }
+                        Thread.Sleep(5000);
                         break;
                     case 3: //Exit
                         Console.WriteLine("Exiting...");
