@@ -186,28 +186,38 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return true;
         }
 
+        //Method to solve sudoku
         public bool solve(){
             int row = -1, col = -1;
             bool isEmpty = true;
+            //Look for empty cell
             for(int i = 0; i < playBoard.GetLength(0); i++){
                 for(int j = 0; j < playBoard.GetLength(1); j++){
                     if(playBoard[i, j] == 0) {
+                        //Set row and col, as well as isEmpty
                         row = i;
                         col = j;
                         isEmpty = false;
                         break;
                     }
                 }
+                //If there is empty cell, break and recurse later
                 if(!isEmpty) break;
             }
+            
+            //No empty cells
             if(isEmpty) return true;
 
+            //Find value
             for(int num = 1; num <= playBoard.GetLength(0); num++) {
+                //Make sure num does not contain in the row, column, subSquare
                 if(containNum(row, col, num)){
+                    //Set cell
                     playBoard[row, col] = num;
+                    //Recurse
                     if(solve()) 
                         return true;
-                    else
+                    else //Backtrack
                         playBoard[row, col] = 0;
                 }
             }
