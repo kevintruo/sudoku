@@ -21,8 +21,21 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 {4,0,9,0,0,3,0,0,0}
             };
 
+            //Completed board
+            int[,] board = new int[,] { 
+                {7,9,2,1,5,4,3,8,6},
+                {6,4,3,8,2,7,1,5,9},
+                {8,5,1,3,9,6,7,2,4},
+                {2,6,5,9,7,3,8,4,1},
+                {4,8,9,5,6,1,2,7,3},
+                {3,1,7,4,8,2,9,6,5},
+                {1,3,6,7,4,8,5,9,2},
+                {9,7,4,2,1,5,6,3,8},
+                {5,2,8,6,3,9,4,1,0} 
+            };
+
             //Sudoku obj
-            Sudoku s = new Sudoku(test);
+            Sudoku s = new Sudoku(board);
 
             //Declare variables
             int numb1 = -1, numb2 = -1, numb = -1;
@@ -50,6 +63,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             {
                                 case 1: //Load the board from 'board.txt'
                                     //Check if board is valid
+                                    //Reinitialize the board 
+                                    s = new Sudoku (board);
                                     if (!s.isBoardValid(test))
                                     {
                                         Console.WriteLine("Your board is invalid");
@@ -58,10 +73,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                     }
 
                                     s.displayBoard(); //Display board
+                                    Console.WriteLine("The boolean is " + s.isValidSudoku());
                                     //Reset input
                                     coord = "";
                                     //Loop until input is valid a1, b1, c2, etc...
-                                    while (!isInputValid(coord!) || !s.isBoardFull())
+                                    while (!isInputValid(coord!) || !s.isValidSudoku())
                                     {
                                         //Prompt input cell
                                         Console.Write("\n Enter coordinates (sample input: 'a1', 'J9')\n> ");
@@ -96,6 +112,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                                 s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
                                                 //Display board after inserted
                                                 s.displayBoard();
+                                                if(s.isValidSudoku()){
+                                                    Console.WriteLine("You solved this puzzle.");
+                                                    Thread.Sleep(1000);
+                                                    break;
+                                                }
                                             }
                                         }
 
