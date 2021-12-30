@@ -25,13 +25,17 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Sudoku s = new Sudoku();
 
             //Declare variables
-            int numb1 = -1, numb = -1, diff = -1;
+            int main = -1, numb = -1, diff = -1;
             string? coord = "";
             while(diff != 4){
                 s.displayDifficulty();
                 diff = getInput(@"^[1-4]$");
+                s.setBoardDiff(diff);
                 if(diff == 4)
-                    Console.WriteLine("Exiting...");
+                    return;
+                s.displayBoard();
+                s.displayMainMenu();
+                main = getInput(@"^[1-4]$");
             }
             // //While loop through
             // while (numb1 != 3)

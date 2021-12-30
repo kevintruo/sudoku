@@ -62,8 +62,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method that display the board
         public void displayBoard()
         {
-            //Clear console
-            Console.Clear();
             //Traverse the board
             for (int i = 0; i < playBoard.GetLength(0); i++)
             {
@@ -116,6 +114,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         //Method to select diffculty of the board
         public void displayDifficulty(){
+            Console.Clear();
             Console.Write("\nWelcome to the Soduku project!\nSelect your diffculty:\n1: Easy\n2: Medium\n3: Hard\n4: Exit (CTRL + C to force exit anytime)\n> ");
         }
 
@@ -262,6 +261,33 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         public int[,] getSetBoard(){
             return this.setBoard;
+        }
+
+        public void setBoardDiff(int diff){
+            Console.Clear();
+            switch(diff){
+                case 1: 
+                    this.playBoard = (int[,]) easy.Clone();
+                    this.setBoard = (int[,]) easy.Clone();
+                    Console.WriteLine("Difficulty: Easy");
+                    break;
+                case 2:
+                    this.playBoard = (int[,]) medium.Clone();
+                    this.setBoard = (int[,]) medium.Clone();
+                    Console.WriteLine("Difficulty: Medium");
+                    break;
+                case 3:
+                    this.playBoard = (int[,]) hard.Clone();
+                    this.setBoard = (int[,]) hard.Clone();
+                    Console.WriteLine("Difficulty: Hard");
+                    break;
+                case 4:
+                    Console.WriteLine("Exiting...");
+                    break;
+                default:
+                    Console.WriteLine("Invalid diffculty level");
+                    return;
+            }
         }
     }
 }
