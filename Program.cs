@@ -27,106 +27,82 @@ namespace MyApp // Note: actual namespace depends on the project name.
             //Declare variables
             int main = -1, numb = -1, diff = -1;
             string? coord = "";
-            while(diff != 4){
+            //Loop through menus
+            while (diff != 4)
+            {
                 s.displayDifficulty();
                 diff = getInput(@"^[1-4]$");
-                while(main != 3 && s.setBoardDiff(diff)){
-                    if(diff == 4)
+                while (main != 3 && s.setBoardDiff(diff))
+                {
+                    if (diff == 4)
                         return;
                     s.displayMainMenu();
                     main = getInput(@"^[1-3]$");
+                    switch (main)
+                    {
+                        case 1:
+                            while (!isInputValid(coord!) || !s.isValidSudoku())
+                            {
+                                //Prompt input cell
+                                Console.Write("\n Enter coordinates (sample input: 'a1', 'I9')\n> ");
+                                coord = Console.ReadLine();
+                                //Validate input cell
+                                if (!isInputValid(coord!))
+                                {
+                                    Console.WriteLine("Invalid input");
+                                }
+                                else
+                                {
+                                    //Reset input
+                                    numb = -1;
+                                    //Check if cell input is empty (from setBoard)
+                                    if (!s.isEmpty(s.getRow(coord!), s.getCol(coord!)))
+                                        Console.WriteLine("This cell is not empty. Try again!");
+                                    else
+                                    {
+                                        //Prompt for a number to insert into the playBoard
+                                        Console.Write("Enter your number here\n> ");
+                                        //Validate number
+                                        while (numb < 0 || numb > 9)
+                                        {
+                                            numb = getInput(@"^[1-9]$");
+                                            if (numb == -1)
+                                                Console.Write("Invalid input. Try again:\n> ");
+                                        }
+                                        //Insert number
+                                        s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
+                                        //Display board after inserted
+                                        Console.Clear();
+                                        s.displayBoard();
+                                        if (s.isValidSudoku())
+                                        {
+                                            Console.WriteLine("You solved this puzzle.");
+                                            Thread.Sleep(1000);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            if (!s.solve())
+                            {
+                                Console.WriteLine("There is no solution");
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                s.displayBoard();
+                                Thread.Sleep(5000);
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("Invalid board");
+                            break;
+                    }
                 }
                 main = -1;
             }
-            // //While loop through
-            // while (numb1 != 3)
-            // {
-            //     //s.displayBoard();
-            //     //Display menu 
-            //     //s.displayMainMenu();
-            //     //Get input from 1 to 3
-            //     numb1 = getInput(@"^[1-3]$");
-            //     //Switch statement
-            //     switch (numb1)
-            //     {
-            //         case 1: //Play game
-            //             s = new Sudoku();
-            //             if (!s.isBoardValid(s.getSetBoard()))
-            //             {
-            //                 Console.WriteLine("Your board is invalid");
-            //                 Thread.Sleep(500);
-            //                 break;
-            //             }
-
-            //             s.displayBoard(); //Display board
-            //             //Reset input
-            //             coord = "";
-            //             //Loop until input is valid a1, b1, c2, etc...
-            //             while (!isInputValid(coord!) || !s.isValidSudoku())
-            //             {
-            //                 //Prompt input cell
-            //                 Console.Write("\n Enter coordinates (sample input: 'a1', 'I9')\n> ");
-            //                 coord = Console.ReadLine();
-            //                 //Validate input cell
-            //                 if (!isInputValid(coord!))
-            //                 {
-            //                     Console.WriteLine("Invalid input");
-            //                     Thread.Sleep(500);
-            //                     s.displayBoard(); //Display board
-            //                 }
-            //                 else
-            //                 {
-            //                     //Reset input
-            //                     numb = -1;
-            //                     //Check if cell input is empty (from setBoard)
-            //                     if (!s.isEmpty(s.getRow(coord!), s.getCol(coord!)))
-            //                         Console.WriteLine("This cell is not empty. Try again!");
-            //                     else
-            //                     {
-            //                         //Prompt for a number to insert into the playBoard
-            //                         Console.Write("Enter your number here\n> ");
-            //                         //Validate number
-            //                         while (numb < 0 || numb > 9)
-            //                         {
-            //                             numb = getInput(@"^[1-9]$");
-            //                             if (numb == -1)
-            //                                 Console.Write("Invalid input. Try again:\n> ");
-            //                         }
-            //                         //Insert number
-            //                         s.setInt(s.getRow(coord!), s.getCol(coord!), numb);
-            //                         //Display board after inserted
-            //                         s.displayBoard();
-            //                         if (s.isValidSudoku())
-            //                         {
-            //                             Console.WriteLine("You solved this puzzle.");
-            //                             Thread.Sleep(1000);
-            //                             break;
-            //                         }
-            //                     }
-            //                 }
-
-            //             }
-            //             break;
-            //         case 2: //Computer plays game
-            //             s.displayBoard();
-            //             if (!s.solve())
-            //                 Console.WriteLine("There is no solution");
-            //             else
-            //             {
-            //                 s.displayBoard();
-            //                 Console.WriteLine("It is all solved!");
-            //             }
-            //             Thread.Sleep(1000);
-            //             break;
-            //         case 3: //Exit
-            //             Console.WriteLine("Exiting...");
-            //             break;
-            //         default:
-            //             Console.WriteLine("Invalid input. Try again");
-            //             Thread.Sleep(500);
-            //             break;
-            //     }
-            // }
         }
 
         //Method to get user input depends on pattern
