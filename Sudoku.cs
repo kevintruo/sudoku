@@ -45,15 +45,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 {6,0,0,0,0,0,0,0,0}
         };
 
+        //Constructor
         public Sudoku(){
             playBoard = new int[,]{};
             setBoard = new int[,]{};
-        }
-        //Constructor 
-        public Sudoku(int[,] board)
-        {
-            this.playBoard = (int[,]) board.Clone();
-            this.setBoard = (int[,]) board.Clone();
         }
 
         //Get, set
@@ -268,27 +263,34 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.Clear();
             switch(diff){
                 case 1: 
-                    this.playBoard = (int[,]) easy.Clone();
-                    this.setBoard = (int[,]) easy.Clone();
                     Console.WriteLine("Difficulty: Easy");
+                    cloneBoard(easy);
                     break;
                 case 2:
-                    this.playBoard = (int[,]) medium.Clone();
-                    this.setBoard = (int[,]) medium.Clone();
                     Console.WriteLine("Difficulty: Medium");
+                    cloneBoard(medium);
                     break;
                 case 3:
-                    this.playBoard = (int[,]) hard.Clone();
-                    this.setBoard = (int[,]) hard.Clone();
                     Console.WriteLine("Difficulty: Hard");
+                    cloneBoard(hard);
                     break;
                 case 4:
                     Console.WriteLine("Exiting...");
-                    break;
+                    return;
                 default:
                     Console.WriteLine("Invalid diffculty level");
                     return;
             }
+        }
+
+        public void cloneBoard(int[,] board){
+            if(!isBoardValid(board)){
+                Console.WriteLine("Invalid board");
+                return;
+            }
+            this.playBoard = (int[,]) board.Clone();
+            this.setBoard = (int[,]) board.Clone();
+            displayBoard();
         }
     }
 }

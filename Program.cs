@@ -33,7 +33,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 s.setBoardDiff(diff);
                 if(diff == 4)
                     return;
-                s.displayBoard();
                 while(main != 3){
                     s.displayMainMenu();
                     main = getInput(@"^[1-3]$");
