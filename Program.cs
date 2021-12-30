@@ -8,43 +8,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         public static void Main(string[] args)
         {
-            //Test board
-            int[,] easy = new int[,] {
-                {0,7,0,0,2,9,1,0,0},
-                {0,0,5,0,0,0,9,6,0},
-                {2,0,0,5,0,1,0,0,0},
-                {8,2,0,1,0,0,7,0,3},
-                {9,3,6,0,0,0,2,0,8},
-                {0,0,7,8,3,0,0,9,6},
-                {3,0,1,0,0,7,6,0,9},
-                {7,0,2,9,0,0,5,0,1},
-                {4,0,9,0,0,3,0,0,0}
-            };
-
-            int[,] medium = new int[,] {
-                {9,8,4,7,3,5,0,0,0},
-                {0,0,7,0,0,0,0,0,0},
-                {0,0,3,0,0,0,5,0,7},
-                {0,0,0,9,4,0,0,1,8},
-                {0,4,9,1,0,2,0,0,0},
-                {1,3,0,0,0,0,0,4,0},
-                {0,0,0,2,0,0,0,7,0},
-                {0,7,0,4,0,8,0,0,3},
-                {4,0,1,0,6,7,0,5,0}
-            };
-
-            int[,] hard = new int[,] {
-                {0,6,3,0,0,0,0,2,0},
-                {0,0,0,8,0,0,9,0,0},
-                {8,0,0,6,7,0,0,0,5},
-                {3,8,0,0,0,0,6,9,0},
-                {0,1,0,2,0,4,0,0,0},
-                {4,0,0,0,0,0,8,0,0},
-                {7,3,0,0,1,0,0,0,0},
-                {0,4,0,0,0,3,0,0,1},
-                {6,0,0,0,0,0,0,0,0}
-            };
-
             //Completed board
             int[,] board = new int[,] {
                 {7,9,2,1,5,4,3,8,6},
@@ -59,26 +22,26 @@ namespace MyApp // Note: actual namespace depends on the project name.
             };
 
             //Sudoku obj
-            Sudoku s = new Sudoku(easy);
+            Sudoku s = new Sudoku();
 
             //Declare variables
             int numb1 = -1, numb = -1;
             string? coord = "";
-
+            s.displayDifficulty();
             //While loop through
             while (numb1 != 3)
             {
-                s.displayBoard();
+                //s.displayBoard();
                 //Display menu 
-                s.displayMainMenu();
+                //s.displayMainMenu();
                 //Get input from 1 to 3
                 numb1 = getInput(@"^[1-3]$");
                 //Switch statement
                 switch (numb1)
                 {
                     case 1: //Play game
-                        s = new Sudoku(board);
-                        if (!s.isBoardValid(easy))
+                        s = new Sudoku();
+                        if (!s.isBoardValid(s.getSetBoard()))
                         {
                             Console.WriteLine("Your board is invalid");
                             Thread.Sleep(500);
@@ -86,7 +49,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         }
 
                         s.displayBoard(); //Display board
-                        Console.WriteLine("The boolean is " + s.isValidSudoku());
                         //Reset input
                         coord = "";
                         //Loop until input is valid a1, b1, c2, etc...
@@ -106,7 +68,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             {
                                 //Reset input
                                 numb = -1;
-                                Console.WriteLine("Cell value is " + s.getInt(s.getRow(coord!), s.getCol(coord!)));
                                 //Check if cell input is empty (from setBoard)
                                 if (!s.isEmpty(s.getRow(coord!), s.getCol(coord!)))
                                     Console.WriteLine("This cell is not empty. Try again!");
@@ -137,7 +98,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         }
                         break;
                     case 2: //Computer plays game
-                        s = new Sudoku(hard);
                         s.displayBoard();
                         if (!s.solve())
                             Console.WriteLine("There is no solution");
@@ -146,7 +106,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             s.displayBoard();
                             Console.WriteLine("It is all solved!");
                         }
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                         break;
                     case 3: //Exit
                         Console.WriteLine("Exiting...");

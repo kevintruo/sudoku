@@ -8,6 +8,47 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Reference board, no CRUD
         private int[,] setBoard;
 
+        private int[,] easy = new int[,] {
+                {0,7,0,0,2,9,1,0,0},
+                {0,0,5,0,0,0,9,6,0},
+                {2,0,0,5,0,1,0,0,0},
+                {8,2,0,1,0,0,7,0,3},
+                {9,3,6,0,0,0,2,0,8},
+                {0,0,7,8,3,0,0,9,6},
+                {3,0,1,0,0,7,6,0,9},
+                {7,0,2,9,0,0,5,0,1},
+                {4,0,9,0,0,3,0,0,0}
+        };
+
+        //Test board
+        private int[,] medium = new int[,] {
+                {9,8,4,7,3,5,0,0,0},
+                {0,0,7,0,0,0,0,0,0},
+                {0,0,3,0,0,0,5,0,7},
+                {0,0,0,9,4,0,0,1,8},
+                {0,4,9,1,0,2,0,0,0},
+                {1,3,0,0,0,0,0,4,0},
+                {0,0,0,2,0,0,0,7,0},
+                {0,7,0,4,0,8,0,0,3},
+                {4,0,1,0,6,7,0,5,0}
+        };
+
+        private int[,] hard = new int[,] {
+                {0,6,3,0,0,0,0,2,0},
+                {0,0,0,8,0,0,9,0,0},
+                {8,0,0,6,7,0,0,0,5},
+                {3,8,0,0,0,0,6,9,0},
+                {0,1,0,2,0,4,0,0,0},
+                {4,0,0,0,0,0,8,0,0},
+                {7,3,0,0,1,0,0,0,0},
+                {0,4,0,0,0,3,0,0,1},
+                {6,0,0,0,0,0,0,0,0}
+        };
+
+        public Sudoku(){
+            playBoard = new int[,]{};
+            setBoard = new int[,]{};
+        }
         //Constructor 
         public Sudoku(int[,] board)
         {
@@ -70,7 +111,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method to display the main menu
         public void displayMainMenu()
         {
-            Console.Write("Welcome to the Soduku project!\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
+            Console.Write("\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
+        }
+
+        //Method to select diffculty of the board
+        public void displayDifficulty(){
+            Console.Write("Welcome to the Soduku project!\nSelect your diffculty (1: Easy, 2: Medium, 3: Hard)\n> ");
         }
 
         //Method to get column coordinate
@@ -212,6 +258,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 }
             }
             return false;
+        }
+
+        public int[,] getSetBoard(){
+            return this.setBoard;
         }
     }
 }
