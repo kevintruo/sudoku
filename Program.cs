@@ -82,6 +82,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             {
                                 Console.WriteLine();
                                 s.displayBoard();
+                                Thread.Sleep(3000);
                             }
                             break;
                         default:
