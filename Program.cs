@@ -8,19 +8,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         public static void Main(string[] args)
         {
-            // //Completed board
-            // int[,] board = new int[,] {
-            //     {7,9,2,1,5,4,3,8,6},
-            //     {6,4,3,8,2,7,1,5,9},
-            //     {8,5,1,3,9,6,7,2,4},
-            //     {2,6,5,9,7,3,8,4,1},
-            //     {4,8,9,5,6,1,2,7,3},
-            //     {3,1,7,4,8,2,9,6,5},
-            //     {1,3,6,7,4,8,5,9,2},
-            //     {9,7,4,2,1,5,6,3,8},
-            //     {5,2,8,6,3,9,4,1,7}
-            // };
-
             //Sudoku obj
             Sudoku s = new Sudoku();
 
@@ -44,8 +31,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             while (!isInputValid(coord!) || !s.isValidSudoku())
                             {
                                 //Prompt input cell
-                                Console.Write("\n Enter coordinates (sample input: 'a1', 'I9')\n> ");
+                                Console.Write("\n Enter coordinates (sample input: 'a1', 'I9', 'x' to back to menu)\n> ");
                                 coord = Console.ReadLine();
+                                if(coord == "x" || coord == "X")
+                                    break;
                                 //Validate input cell
                                 if (!isInputValid(coord!))
                                 {
@@ -93,7 +82,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             {
                                 Console.WriteLine();
                                 s.displayBoard();
-                                Thread.Sleep(5000);
                             }
                             break;
                         default:
