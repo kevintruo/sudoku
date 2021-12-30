@@ -65,8 +65,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                                         s.displayBoard();
                                         if (s.isValidSudoku())
                                         {
-                                            Console.WriteLine("You solved this puzzle.");
-                                            Thread.Sleep(1000);
+                                            Console.Write("You solved this puzzle. Enter any keys to continue: ");
+                                            Console.ReadLine();
                                             break;
                                         }
                                     }
@@ -82,7 +82,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
                             {
                                 Console.WriteLine();
                                 s.displayBoard();
-                                Thread.Sleep(3000);
+                                Console.Write("Enter any keys to continue: ");
+                                Console.ReadLine();
                             }
                             break;
                         default:
