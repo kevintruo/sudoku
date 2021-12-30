@@ -109,11 +109,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
         //Method to display the main menu
         public void displayMainMenu()
         {
-            Console.Write("\n1. Play game\n2. Let the computer play for me\n3. Exit (CTRL + C to force quit)\n> ");
+            Console.Write("\n1. Play game\n2. Let the computer play for me\n3. Back to select difficulty\n> ");
         }
 
         //Method to select diffculty of the board
-        public void displayDifficulty(){
+        public void displayDifficulty()
+        {
             Console.Clear();
             Console.Write("\nWelcome to the Soduku project!\nSelect your diffculty:\n1: Easy\n2: Medium\n3: Hard\n4: Exit (CTRL + C to force exit anytime)\n> ");
         }

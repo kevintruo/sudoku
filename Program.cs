@@ -34,8 +34,11 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 if(diff == 4)
                     return;
                 s.displayBoard();
-                s.displayMainMenu();
-                main = getInput(@"^[1-4]$");
+                while(main != 3){
+                    s.displayMainMenu();
+                    main = getInput(@"^[1-3]$");
+                }
+                main = -1;
             }
             // //While loop through
             // while (numb1 != 3)
