@@ -30,10 +30,9 @@ namespace MyApp // Note: actual namespace depends on the project name.
             while(diff != 4){
                 s.displayDifficulty();
                 diff = getInput(@"^[1-4]$");
-                s.setBoardDiff(diff);
-                if(diff == 4)
-                    return;
-                while(main != 3){
+                while(main != 3 && s.setBoardDiff(diff)){
+                    if(diff == 4)
+                        return;
                     s.displayMainMenu();
                     main = getInput(@"^[1-3]$");
                 }

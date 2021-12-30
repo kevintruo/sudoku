@@ -259,7 +259,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return this.setBoard;
         }
 
-        public void setBoardDiff(int diff){
+        public bool setBoardDiff(int diff){
             Console.Clear();
             switch(diff){
                 case 1: 
@@ -276,11 +276,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
                     break;
                 case 4:
                     Console.WriteLine("Exiting...");
-                    return;
+                    break;
                 default:
                     Console.WriteLine("Invalid diffculty level");
-                    return;
+                    return false;
             }
+            return true;
         }
 
         public void cloneBoard(int[,] board){
