@@ -116,7 +116,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         //Method to select diffculty of the board
         public void displayDifficulty(){
-            Console.Write("Welcome to the Soduku project!\nSelect your diffculty (1: Easy, 2: Medium, 3: Hard)\n> ");
+            Console.Write("\nWelcome to the Soduku project!\nSelect your diffculty:\n1: Easy\n2: Medium\n3: Hard\n4: Exit (CTRL + C to force exit anytime)\n> ");
         }
 
         //Method to get column coordinate
