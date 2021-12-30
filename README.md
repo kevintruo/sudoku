@@ -1,4 +1,4 @@
 Clone this project
-```git clone https://github.com/kevintruo/sudoku.git```
+```\ngit clone https://github.com/kevintruo/sudoku.git\n```
 Then run 
-```dotnet run```
+```\ndotnet run\n```
