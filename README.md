@@ -6,6 +6,8 @@ Then run
 ```bash
 dotnet run
 ```
+OR 
+
 Using docker
 ```
 docker build -t sudoku-image -f Dockerfile .
